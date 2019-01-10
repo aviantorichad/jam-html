@@ -1,0 +1,60 @@
+<style>
+@import url('https://fonts.googleapis.com/css?family=Bungee');
+*{font-family: 'Bungee', sans-serif !important;}
+body{background:#000;color:#fff;text-align: center;font-family: helvetica;margin: auto;}
+#jam{font-size:22em;}
+#tanggal{font-size:6em;font-family: helvetica;background:#fff;color:#000;font-weight:bold;}
+</style>
+<div id="jam"></div>
+<div id="tanggal"></div>
+<script>
+function replaceDay(hariEng) {
+    switch (hariEng) {
+        case "Mon":
+            return "Senin";
+            break;
+        case "Tue":
+            return "Selasa";
+            break;
+        case "Wed":
+            return "Rabu";
+            break;
+        case "Thu":
+            return "Kamis";
+            break;
+        case "Fri":
+            return "Jum'at";
+            break;
+        case "Sat":
+            return "Sabtu";
+            break;
+        case "Sun":
+            return "Minggu";
+            break;
+        default:
+            return hariEng;
+            break;
+    }
+}
+function jam() {
+    //.Sat Feb 15 2014 | 12:34:01
+    setTimeout("jam()", 1000);
+    var Tgl = new Date().toDateString();
+    var tglPisah = Tgl.split(' ');
+    var hari = replaceDay(tglPisah[0]);
+    var tgl = tglPisah[2];
+    var bln = tglPisah[1];
+    var thn = tglPisah[3];
+    Tgl = hari + ", " + tgl + "-" + bln + "-" + thn;
+    var today = new Date().toTimeString();
+    var jam = today.split(' ');
+    var pisah = jam[0].split(':');
+    var hh = pisah[0];
+    var ii = pisah[1];
+    var ss = pisah[2];
+    document.getElementById("jam").innerHTML = hh+":"+ii+"<span style='font-size:0.25em;'>."+ss+"</span>";
+    document.getElementById("tanggal").innerHTML = Tgl;
+}
+
+jam();
+</script>
